@@ -2,7 +2,7 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
 
-#Window.size = (300, 300)
+Window.size = (350, 550)
 
 navigation_helper = """
 Screen:
@@ -21,15 +21,52 @@ Screen:
                     Widget:
                         
         MDNavigationDrawer:
-            id: nav_drawer     
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '8dp'
+                padding: '8dp'
+
+                Image:
+                    source: 'PUImURI-logo2.png'
+
+                MDLabel:
+                    text: '   Kaavalista'
+                    font_style: 'Subtitle1'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: '    Valitse haluttu kaava pyöritettäväksi.'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            Image:
+                                source: 'PUI.png'
+                                pos: -65, 105
+
+                        OneLineListItem:
+                            Image:
+                                source: 'URI.png'
+                                pos: -65, 55
+                                size: 55, 55
+                                size_hint: None, None
+
+                        OneLineListItem:
+                            text: 'Kaava 2'
+
 """
 
 
-class DemoApp(MDApp):
+class PuimuriApp(MDApp):
 
     def build(self):
         screen = Builder.load_string(navigation_helper)
         return screen
 
 
-DemoApp().run()
+PuimuriApp().run()
