@@ -1,54 +1,73 @@
 from kivymd.app import MDApp
-from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.card import MDCard
-from kivymd.uix.label import MDLabel
-from kivymd.uix.screen import MDScreen
+from kivy.lang import Builder
+from kivy.core.window import Window
 
 
-class ThemeSelect(MDApp):
+Window.size = (350, 550)
+
+puimuri_main = """
+Screen:
+    size_hint: 1, 1
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: 'PUImURI Solver'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 2
+                        md_bg_color: 0.76, 0.03, 0.86
+
+                    Widget:
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '8dp'
+                padding: '8dp'
+
+                Image:
+                    source: 'PUImURI-logo2.png'
+
+                MDLabel:
+                    text: '   Kaavalista'
+                    font_style: 'Subtitle1'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: '    Valitse haluttu kaava pyöritettäväksi.'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            Image:
+                                source: 'PUI.png'
+                                pos: -65, 105
+
+                        OneLineListItem:
+                            Image:
+                                source: 'URI.png'
+                                pos: -65, 55
+                                size: 50,50
+                                size_hint: None, None
+                                
+                        OneLineListItem:
+                            text: 'Kaava 2'
+
+"""
+
+
+class PuimuriApp(MDApp):
+
     def build(self):
-        self.theme_cls.theme_style_switch_animation = True
-        self.theme_cls.theme_style_switch_animation_duration = 0.5
-        self.theme_cls.theme_style = 'Dark'
-        self.theme_cls.primary_palette = 'Orange'
-        return (
-            MDScreen(
-                MDCard(
-                    MDLabel(
-                        id = 'label',
-                        text = 'Theme style - {}'.format(self.theme_cls.theme_style),
-                        halign = 'center',
-                        valign = 'center',
-                        bold = True,
-                        font_style = 'H5'
-                    ),
-                    MDRaisedButton(
-                        text = 'Switch Theme',
-                        on_release = self.switch_theme_style,
-                        pos_hint = {'center_x': 0.5}
-                    ),
-                    id = 'card',
-                    orientation = 'vertical',
-                    padding = (0,0,0,'36dp'),
-                    size_hint = (0.5, 0.5),
-                    pos_hint = {'center_x': 0.5, 'center_y': 0.5},
-                    elevation = 4,
-                    shadow_radius = 6,
-                    shadow_offset = (0, 2),
-                )
-            )
-        )
-    
-    def switch_theme_style(self, *args):
-        self.theme_cls.primary_palette = (
-            'Orange' if self.theme_cls.primary_palette == 'Red' else 'Red'
-        )
-        self.theme_cls.theme_style = (
-            'Dark' if self.theme_cls.theme_style == 'Light' else 'Light'
-        )
-        self.root.ids.card.ids.label.text = (
-            'Theme style - {}'.format(self.theme_cls.theme_style)
-        )
+        screen = Builder.load_string(puimuri_main)
+        return screen
 
-
-ThemeSelect().run()
+if __name__=='__main__':
+    PuimuriApp().run()
