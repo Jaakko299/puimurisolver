@@ -1,7 +1,7 @@
 from kivy.core.text import LabelBase
 from kivy.core.window import Window
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 from kivymd.app import MDApp
 from kivymd.uix.list import OneLineAvatarIconListItem
 from kivymd.icon_definitions import md_icons
@@ -49,7 +49,7 @@ Builder.load_string("""
                     source: 'Puimuri_solver_neon.png'
                     allow_stretch: True                    
                     size_hint: 0.5, 5
-                    pos_hint: {'x': 0, 'y': -2.3} 
+                    pos_hint: {'x': 0, 'y': -1.8} 
 
         
             MDFloatLayout:
@@ -61,7 +61,13 @@ Builder.load_string("""
                             
         MDLabel:
 
-
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .3}
+            text: "[b][i]Select the unknown factor:[/b][/i]"
+            font_size: "20sp"
+            markup: True
+        
     FloatLayout:
         size: 100, 100
         size_hint: None, None
@@ -75,30 +81,35 @@ Builder.load_string("""
                 
     MDBoxLayout:
         
-        pos_hint: {'x': 0, 'y': 0.4}
+        pos_hint: {'x': 0, 'y': 0.35}
         MDList:
 
             OneLineAvatarIconListItem:
                 text: 'POWER (P)'
                 on_release: root.manager.current = 'P'
+                markup: True
                 IconLeftWidget: 
                     icon: 'power-plug'
-
             OneLineAvatarIconListItem:
                 text: 'VOLTAGE (U)'
                 on_release: root.manager.current = 'U'
+                markup: True
                 IconLeftWidget: 
                     icon: 'lightning-bolt'
             OneLineAvatarIconListItem:
                 text: 'CURRENT (I)'
                 on_release: root.manager.current = 'I'
+                markup: True
                 IconLeftWidget: 
                     icon: 'current-ac'
             OneLineAvatarIconListItem:
                 text: 'RESISTANCE (R)'
                 on_release: root.manager.current = 'R'
+                markup: True
                 IconLeftWidget: 
                     icon: 'omega'
+            
+            
                     
 <P_Screen>
     MDBoxLayout:
@@ -140,7 +151,7 @@ Builder.load_string("""
                 size: 2000, root.height / 9
     
     MDFloatingActionButton:
-        pos_hint: {'center_x': .5, 'center_y': .18}
+        pos_hint: {'center_x': .4, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
         icon: 'home'
@@ -181,10 +192,10 @@ Builder.load_string("""
   
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .7, 'center_y': .18}
+        pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'information-variant'
+        icon: 'help'
         md_bg_color: 0.6, 0, 1, 1
 
 
@@ -192,22 +203,23 @@ Builder.load_string("""
             root.manager.current = 'P_info'  
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': .85, 'center_y': .54}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
-
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
         on_release:
             root.manager.current = 'P_guide_1'  
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .3}
+        pos_hint: {'center_x': .85, 'center_y': .35}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
@@ -230,7 +242,7 @@ Builder.load_string("""
                     source: 'Voltage_kuva.png'
                     allow_stretch: True
                     size_hint: 0.5, 5
-                    pos_hint: {'x': -.07, 'y': -2.1} 
+                    pos_hint: {'x': -.05, 'y': -2.1} 
                     
             MDFloatLayout:
                 Image:
@@ -257,7 +269,7 @@ Builder.load_string("""
 
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .5, 'center_y': .18}
+        pos_hint: {'center_x': .4, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
         icon: 'home'
@@ -267,28 +279,6 @@ Builder.load_string("""
         on_release:
             root.manager.current = 'first'
 
-
-    MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .5}
-        elevation: 2.5
-        elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
-
-
-        on_release:
-            root.manager.current = 'U_guide_1'  
-
-    MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .3}
-        elevation: 2.5
-        elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
-
-
-        on_release:
-            root.manager.current = 'U_guide_2'
             
 # kaava kuvat
     MDFloatLayout:
@@ -320,10 +310,10 @@ Builder.load_string("""
             pos_hint: {'x': -0.5, 'y': -0.4}   
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .7, 'center_y': .18}
+        pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'information-variant'
+        icon: 'help'
         md_bg_color: 0.6, 0, 1, 1
 
 
@@ -331,23 +321,23 @@ Builder.load_string("""
             root.manager.current = 'U_info'       
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': .85, 'center_y': .55}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
-
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
         on_release:
             root.manager.current = 'U_guide_1'  
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .3}
+        pos_hint: {'center_x': .85, 'center_y': .35}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
-
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
         on_release:
             root.manager.current = 'U_guide_2'
@@ -393,7 +383,7 @@ Builder.load_string("""
                 size: 2000, root.height / 9
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .5, 'center_y': .18}
+        pos_hint: {'center_x': .4, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
         icon: 'home'
@@ -402,16 +392,6 @@ Builder.load_string("""
             root.manager.current = 'first'
 
 
-    MDFloatingActionButton:
-        pos_hint: {'center_x': .7, 'center_y': .18}
-        elevation: 2.5
-        elevation_normal: 0
-        icon: 'information-variant'
-        md_bg_color: 0.6, 0, 1, 1
-
-
-        on_release:
-            root.manager.current = 'I_info'
                                       
 # kaava kuvat
     MDFloatLayout:
@@ -422,7 +402,6 @@ Builder.load_string("""
             allow_stretch: True
             size_hint: 0.5, 0.3
             pos_hint: {'x': -0.5, 'y': 0}
-
 
     MDFloatLayout:
         pos_hint: {'x': 0.5, 'y': 0.6}
@@ -441,12 +420,13 @@ Builder.load_string("""
             allow_stretch: True
             size_hint: 0.5, 0.3
             pos_hint: {'x': -0.5, 'y': -0.4}
+
                     
     MDFloatingActionButton:
-        pos_hint: {'center_x': .7, 'center_y': .18}
+        pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'information-variant'
+        icon: 'help'
         md_bg_color: 0.6, 0, 1, 1
 
 
@@ -455,33 +435,36 @@ Builder.load_string("""
 
 # guide screen buttons
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .8}
+        pos_hint: {'center_x': .85, 'center_y': .75}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
             root.manager.current = 'I_guide_1'  
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': .85, 'center_y': .55}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
             root.manager.current = 'I_guide_2'
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .3}
+        pos_hint: {'center_x': .85, 'center_y': .35}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
@@ -515,7 +498,7 @@ Builder.load_string("""
                             
         MDLabel:
 
- # bottom bar
+    #bottom bar
     MDFloatLayout:
         size: 100, 100
         size_hint: None, None
@@ -528,7 +511,7 @@ Builder.load_string("""
 
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .5, 'center_y': .18}
+        pos_hint: {'center_x': .4, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
         icon: 'home'
@@ -537,6 +520,8 @@ Builder.load_string("""
 
         on_release:
             root.manager.current = 'first'
+
+
 # kaava kuvat
     MDFloatLayout:
         pos_hint: {'x': 0.5, 'y': 0.6}
@@ -568,10 +553,10 @@ Builder.load_string("""
 
             
     MDFloatingActionButton:
-        pos_hint: {'center_x': .7, 'center_y': .18}
+        pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'information-variant'
+        icon: 'help'
         md_bg_color: 0.6, 0, 1, 1
 
 
@@ -582,33 +567,36 @@ Builder.load_string("""
 
 # guide screen buttons
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .8}
+        pos_hint: {'center_x': .85, 'center_y': .75}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
             root.manager.current = 'R_guide_1'  
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': .85, 'center_y': .55}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
             root.manager.current = 'R_guide_2'
 
     MDFloatingActionButton:
-        pos_hint: {'center_x': .6, 'center_y': .3}
+        pos_hint: {'center_x': .85, 'center_y': .35}
         elevation: 2.5
         elevation_normal: 0
-        icon: 'arrow-left-bold'
-        md_bg_color: 0.6, 0, 1, 1
+        icon: 'information-variant'
+        md_bg_color: 0.46, 0.46, 0.46, 1
+        size_hint: 0.12, 0.06
 
 
         on_release:
@@ -641,6 +629,17 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+
     MDFloatingActionButton:
         pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
@@ -665,8 +664,32 @@ Builder.load_string("""
 
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.05, 'y': 0.3} 
-            text: "Power is defined as the rate at which work is done or energy is transferred. The SI unit of power is the watt (W), which is defined as one joule per second"
+            pos_hint: {'x': .02, 'y': 0.26}
+            text: "[b]Power[/b] is the rate at which electrical energy is transferred or consumed."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.11}
+            text: "It is a measure of how much [b]work[/b] can be done [b]per unit time[/b] by an electrical system."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+        
+        MDLabel:
+            pos_hint: {'x': .02, 'y': -.05}
+            text: "The unit of electric power is the [b]watt (W),[/b] which is defined as [b]one joule of energy per second.[/b]"
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+
+        
+    
+        
+
+
+
 <U_Info_Screen>
     MDBoxLayout:
         orientation: 'vertical'
@@ -694,7 +717,16 @@ Builder.load_string("""
                             
         MDLabel:
 
-        
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9   
 
     MDFloatingActionButton:
         pos_hint: {'center_x': .6, 'center_y': .18}
@@ -718,7 +750,38 @@ Builder.load_string("""
         on_release:
             root.manager.current = 'first'
 
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.26}
+            text: "[b]Voltage[/b], also known as electric potential difference, is a measure of the amount of electric potential energy per unit charge in an electric circuit."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+    
+    
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.10}
+            text: "It represents the [b]force[/b] that drives the flow of electric charge through a circuit."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+        
+        MDLabel:
+            pos_hint: {'x': .02, 'y': -.02}
+            text: "Measured in [b]Volts (V)[/b] and is represented by the [b]symbol U[/b]"
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
 
+        MDLabel:
+            pos_hint: {'x': .02, 'y': -.14}
+            text: "[b]Voltage[/b] is a [b]scalar quantity[/b] that can have both positive and negative values."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+
+
+    
 <I_Info_Screen>
     MDBoxLayout:
         orientation: 'vertical'
@@ -734,7 +797,7 @@ Builder.load_string("""
                     source: 'info_puimuri.png'
                     allow_stretch: True
                     size_hint: 0.5, 5
-                    pos_hint: {'x': -0.1, 'y': -2} 
+                    pos_hint: {'x': -0.1, 'y': -2.2} 
                     
             MDFloatLayout:
                 Image:
@@ -745,6 +808,17 @@ Builder.load_string("""
                     
                             
         MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
     MDFloatingActionButton:
         pos_hint: {'center_x': .6, 'center_y': .18}
@@ -768,7 +842,38 @@ Builder.load_string("""
         on_release:
             root.manager.current = 'first'
 
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.26}
+            text: "[b]Electric current[/b] is the flow of electric charge through a conductor or an electric circuit."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+    
+    
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.13}
+            text: "It is the [b]rate[/b] at which electric charge flows past a given point in a circuit."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
 
+        MDLabel:
+            pos_hint: {'x': .02, 'y': .02}
+            text: "Measured in [b]amperes (A)[/b] and represented by [b]symbol (I)[/b]"
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+
+    
+        MDLabel:
+            pos_hint: {'x': .02, 'y': -0.13}
+            text: "Electric current is [b]caused[/b] by the movement of free electrons in a conductor, which are pushed by an electric field."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.9, 1
+
+        
 <R_Info_Screen>
     MDBoxLayout:
         orientation: 'vertical'
@@ -784,16 +889,28 @@ Builder.load_string("""
                     source: 'info_puimuri.png'
                     allow_stretch: True
                     size_hint: 0.5, 5
-                    pos_hint: {'x': -0.1, 'y': -2} 
+                    pos_hint: {'x': -0.1, 'y': -2.2} 
                     
-            FloatLayout:
+            MDFloatLayout:
                 Image:
                     source: 'puimuri_transparent.png'
-                    size_hint: 0.25, None
+                    allow_stretch: True
+                    size_hint: 0.25, 5
                     pos_hint: {'x': 0.75, 'y': -0.9}  
                     
                             
         MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
     MDFloatingActionButton:
         pos_hint: {'center_x': .6, 'center_y': .18}
@@ -817,7 +934,28 @@ Builder.load_string("""
         on_release:
             root.manager.current = 'first'
 
-            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.26} 
+            text: "[b]Electrical resistance[/b] is a property of a material or a component that opposes the flow of electrical current through it."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.95, 1
+        
+        MDLabel:
+            pos_hint: {'x': .02, 'y': 0.1} 
+            text: "Measured in [b]ohms (Ω)[/b] and is represented by the [b]symbol R.[/b]"
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.95, 1
+        
+        MDLabel:
+            pos_hint: {'x': .02, 'y': -0.05} 
+            text: "[b]Resistance[/b] is a critical parameter in electrical circuits, as it determines the amount of current that flows through a circuit when a voltage is applied."
+            font_size: "18sp"
+            markup: True
+            size_hint: 0.95, 1
+        
 
 <P_Guide_Screen_1>
     MDBoxLayout:
@@ -845,6 +983,18 @@ Builder.load_string("""
                     
                             
         MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+        
     MDFloatingActionButton:
         pos_hint: {'center_x': .6, 'center_y': .18}
         elevation: 2.5
@@ -907,6 +1057,17 @@ Builder.load_string("""
                     
                             
         MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -971,8 +1132,16 @@ Builder.load_string("""
                             
         MDLabel:
 
-  
-
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuva1
     MDFloatLayout:
@@ -1033,6 +1202,16 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -1093,6 +1272,16 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -1154,6 +1343,16 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -1214,7 +1413,17 @@ Builder.load_string("""
                             
         MDLabel:
 
-
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+        
 # kaava kuvat
     MDFloatLayout:
         pos_hint: {'x': 0.5, 'y': 0.6}
@@ -1275,6 +1484,16 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -1335,6 +1554,16 @@ Builder.load_string("""
                             
         MDLabel:
 
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
 
 # kaava kuvat
     MDFloatLayout:
@@ -1393,6 +1622,17 @@ Builder.load_string("""
                     
                             
         MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9        
 
 # kaava kuvat
     MDFloatLayout:
@@ -1501,7 +1741,7 @@ class TestApp(MDApp):
         
         # Create the screen manager
 
-        sm = ScreenManager()
+        sm = ScreenManager(transition = NoTransition())
         # main screen
         sm.add_widget(First_Screen(name='first'))
         # P, U, I, R screens
@@ -1535,18 +1775,4 @@ class TestApp(MDApp):
 
 if __name__ == '__main__':
     TestApp().run()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
