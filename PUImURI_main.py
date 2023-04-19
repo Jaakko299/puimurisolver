@@ -82,8 +82,12 @@ Builder.load_string("""
                 
     MDBoxLayout:
         
-        pos_hint: {'x': 0, 'y': 0.12}
+        pos_hint: {'x': 0, 'y': -0.25}
+        
         MDList:
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {'top': 1}
 
             OneLineAvatarIconListItem:
                 text: 'POWER (P)'
@@ -1816,7 +1820,7 @@ Builder.load_string("""
 
     MDFloatLayout:    
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': .2}
+            pos_hint: {'x': 0.1, 'y': .2}
             allow_stretch: True
             text: "[i]= 0,000 000 001   gigawatt (GW)[/i]"
             font_size: "18sp"
@@ -1825,16 +1829,16 @@ Builder.load_string("""
             
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': .15}
+            pos_hint: {'x': 0.1, 'y': .15}
             allow_stretch: True
-            text: "[i]= 0,000 00           megawatt (MW)[/i]"
+            text: "[i]= 0,000 001        megawatt (MW)[/i]"
             font_size: "18sp"
             size_hint: 0.95,1
             markup: True
 
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': .10}
+            pos_hint: {'x': 0.1, 'y': .10}
             allow_stretch: True
             text: "[i]= 0,001                      kilowatt (kW)[/i]"
             font_size: "18sp"
@@ -1843,7 +1847,7 @@ Builder.load_string("""
     
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': -.05}
+            pos_hint: {'x': 0.1, 'y': -.05}
             allow_stretch: True
             text: "[i]= 1000                        milliwatt (kW)[/i]"
             font_size: "18sp"
@@ -1852,7 +1856,7 @@ Builder.load_string("""
 
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': -.10}
+            pos_hint: {'x': 0.1, 'y': -.10}
             allow_stretch: True
             text: "[i]= 1 000 000           microwatt (µW)"
             font_size: "18sp"
@@ -1861,7 +1865,7 @@ Builder.load_string("""
             
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.2, 'y': -.15}
+            pos_hint: {'x': 0.1, 'y': -.15}
             allow_stretch: True
             text: "[i]= 1 000 000 000    nanowatt (nW)"
             font_size: "18sp"
@@ -2311,7 +2315,7 @@ Builder.load_string("""
         pos_hint: {'x': 0.5, 'y': 0.6}
         
         Image:
-            source: 'si_base.PNG'
+            source: 'si_base.png'
             allow_stretch: True
             pos_hint: {'x': -0.5, 'y': -0.55}
             size_hint: 1, 1
@@ -2466,7 +2470,6 @@ class TestApp(MDApp):
         sm.add_widget(UC_R(name='Unit_R'))
 
         #siunits
-
         sm.add_widget(SI_U(name='SIU'))
 
 
@@ -2474,4 +2477,3 @@ class TestApp(MDApp):
 
 if __name__ == '__main__':
     TestApp().run()
-
