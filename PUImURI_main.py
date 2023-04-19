@@ -63,9 +63,10 @@ Builder.load_string("""
 
     MDFloatLayout:
         MDLabel:
-            pos_hint: {'x': 0.05, 'y': .3}
+            allow_stretch: True
+            pos_hint: {'x': 0.05, 'y': .32}
             text: "[b][i]Select the unknown factor:[/b][/i]"
-            font_size: "20sp"
+            font_size: "18sp"
             markup: True
         
     FloatLayout:
@@ -81,7 +82,7 @@ Builder.load_string("""
                 
     MDBoxLayout:
         
-        pos_hint: {'x': 0, 'y': 0.35}
+        pos_hint: {'x': 0, 'y': 0.12}
         MDList:
 
             OneLineAvatarIconListItem:
@@ -108,6 +109,20 @@ Builder.load_string("""
                 markup: True
                 IconLeftWidget: 
                     icon: 'omega'
+            OneLineAvatarIconListItem:
+                text: 'CONVERTER'
+                on_release: root.manager.current = 'Unit'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'android-studio'
+            OneLineAvatarIconListItem:
+                text: 'SI - UNITS'
+                on_release: root.manager.current = 'SIU'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'earth'
+            
+            
             
             
                     
@@ -1665,6 +1680,655 @@ Builder.load_string("""
         on_release:
             root.manager.current = 'first'
 
+<Unitconverter>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+        
+            
+
+           
+            MDFloatLayout:
+                Image:
+                    source: 'converter_kuva.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': 0, 'y': -2.1} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+                            
+        MDLabel:
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .28}
+            text: "[b][i]Select physical quantity to convert:[/b][/i]"
+            font_size: "18sp"
+            markup: True    
+
+
+    MDBoxLayout:
+        
+        pos_hint: {'x': 0, 'y': 0.4}
+        MDList:
+
+            OneLineAvatarIconListItem:
+                text: 'POWER (P)'
+                on_release: root.manager.current = 'Unit_P'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'power-plug'
+            OneLineAvatarIconListItem:
+                text: 'VOLTAGE (U)'
+                on_release: root.manager.current = 'Unit_U'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'lightning-bolt'
+            OneLineAvatarIconListItem:
+                text: 'CURRENT (I)'
+                on_release: root.manager.current = 'Unit_I'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'current-ac'
+            OneLineAvatarIconListItem:
+                text: 'RESISTANCE (R)'
+                on_release: root.manager.current = 'Unit_R'
+                markup: True
+                IconLeftWidget: 
+                    icon: 'omega'
+
+    MDFloatLayout:
+        size: 100, 100
+        size_hint: None, None
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+    
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .5, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+
+#Unitconvertor p screen
+
+<UC_P>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+
+            
+            MDFloatLayout:
+                Image:
+                    source: 'watt_image.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': -0.05, 'y': -2.2} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+                    
+                            
+        MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9   
+    
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .3}
+            text: "[b][i]1 Watt equals to:[/b][/i]"
+            font_size: "18sp"
+            markup: True
+
+    MDFloatLayout:    
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': .2}
+            allow_stretch: True
+            text: "[i]= 0,000 000 001   gigawatt (GW)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': .15}
+            allow_stretch: True
+            text: "[i]= 0,000 00           megawatt (MW)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': .10}
+            allow_stretch: True
+            text: "[i]= 0,001                      kilowatt (kW)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+    
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': -.05}
+            allow_stretch: True
+            text: "[i]= 1000                        milliwatt (kW)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': -.10}
+            allow_stretch: True
+            text: "[i]= 1 000 000           microwatt (µW)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.2, 'y': -.15}
+            allow_stretch: True
+            text: "[i]= 1 000 000 000    nanowatt (nW)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+        
+        
+        
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .6, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'arrow-left-bold'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'Unit'
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .4, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+
+    
+<UC_U>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+
+            
+            MDFloatLayout:
+                Image:
+                    source: 'volt_kuva.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': -0.05, 'y': -2.2} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+                    
+                            
+        MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .3}
+            text: "[b][i]1 Volt equals to:[/b][/i]"
+            font_size: "18sp"
+            markup: True
+
+    MDFloatLayout:    
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .2}
+            allow_stretch: True
+            text: "[i]= 0,000 000 001  gigavolt (GV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .15}
+            allow_stretch: True
+            text: "[i]= 0,000 001       megavolt (MV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .10}
+            allow_stretch: True
+            text: "[i]= 0,001                     kilovolt (kV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+    
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.05}
+            allow_stretch: True
+            text: "[i]= 1000                      millivolt (mV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.10}
+            allow_stretch: True
+            text: "[i]= 1 000 000          microvolt (µV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.15}
+            allow_stretch: True
+            text: "[i]= 1 000 000 000   nanovolt (nV)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .6, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'arrow-left-bold'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'Unit'
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .4, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+
+
+            
+    
+<UC_I>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+
+            
+            MDFloatLayout:
+                Image:
+                    source: 'ampere_kuva.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': 0, 'y': -2.2} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+                    
+                            
+        MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9   
+
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .3}
+            text: "[b][i]1 Ampere equals to:[/b][/i]"
+            font_size: "20sp"
+            markup: True
+
+    MDFloatLayout:    
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .2}
+            allow_stretch: True
+            text: "[i]= 0,000 000 001   giga-ampere (GA)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .15}
+            allow_stretch: True
+            text: "[i]= 0,000 001        mega-ampere (MA)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .10}
+            allow_stretch: True
+            text: "[i]= 0,001                      kiloampere (kA)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+    
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.05}
+            allow_stretch: True
+            text: "[i]= 1000                        milliampere (mA)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.10}
+            allow_stretch: True
+            text: "[i]= 1 000 000           microampere (µA)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.15}
+            allow_stretch: True
+            text: "[i]= 1 000 000 000    nanoampere (nA)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True            
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .6, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'arrow-left-bold'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'Unit'
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .4, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+
+
+    
+<UC_R>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+
+            
+            MDFloatLayout:
+                Image:
+                    source: 'ohm_kuva.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': -0.05, 'y': -2.2} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+                    
+                            
+        MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9   
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.05, 'y': .3}
+            text: "[b][i]1 Ohm equals to:[/b][/i]"
+            font_size: "20sp"
+            markup: True
+
+    MDFloatLayout:    
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .2}
+            allow_stretch: True
+            text: "[i]= 0,000 000 001   gigaohm (GΩ)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .15}
+            allow_stretch: True
+            text: "[i]= 0,000 001        megaohm (MΩ)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': .10}
+            allow_stretch: True
+            text: "[i]= 0,001                      kilo-ohm (kΩ)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+    
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.05}
+            allow_stretch: True
+            text: "[i]= 1000                        milliohm (mΩ)[/i]"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.10}
+            allow_stretch: True
+            text: "[i]= 1 000 000           micro-ohm (µΩ)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+            
+    MDFloatLayout:
+        MDLabel:
+            pos_hint: {'x': 0.1, 'y': -.15}
+            allow_stretch: True
+            text: "[i]= 1 000 000 000    nano-ohm (nΩ)"
+            font_size: "18sp"
+            size_hint: 0.95,1
+            markup: True
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .6, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'arrow-left-bold'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'Unit'
+
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .4, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+       
+<SI_U>
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        radius: [25, 0, 0, 0]
+        md_bg_color: 1, 1, 1, 1
+
+        MDTopAppBar:
+            elevation: 2
+            elevation_normal: 0
+            md_bg_color: 0.6, 0, 1, 1
+
+            
+            MDFloatLayout:
+                Image:
+                    source: 'si_units_image.png'
+                    allow_stretch: True
+                    size_hint: 0.5, 5
+                    pos_hint: {'x': 0, 'y': -2.2} 
+                    
+            MDFloatLayout:
+                Image:
+                    source: 'puimuri_transparent.png'
+                    allow_stretch: True
+                    size_hint: 0.25, 5
+                    pos_hint: {'x': 0.75, 'y': -0.9}  
+            
+                    
+                    
+                            
+        MDLabel:
+
+    #bottom bar
+    MDFloatLayout:
+        size: 100, 100
+        
+        canvas:
+            Color:
+                rgba: 0.6, 0, 1, 1
+            Rectangle:
+                pos: 0,0
+                size: 2000, root.height / 9
+
+    
+    MDFloatLayout:
+        pos_hint: {'x': 0.5, 'y': 0.6}
+        
+        Image:
+            source: 'si_base.PNG'
+            allow_stretch: True
+            pos_hint: {'x': -0.5, 'y': -0.55}
+            size_hint: 1, 1
+
+    
+    MDFloatingActionButton:
+        pos_hint: {'center_x': .5, 'center_y': .18}
+        elevation: 2.5
+        elevation_normal: 0
+        icon: 'home'
+        md_bg_color: 0.6, 0, 1, 1
+
+
+        on_release:
+            root.manager.current = 'first'
+       
+
 """)
 
 
@@ -1729,7 +2393,29 @@ class R_Guide_Screen_2(Screen):
 class R_Guide_Screen_3(Screen):
     pass
 
+# Unit Converter screen
+class Unitconverter(Screen):
+    pass
 
+#Unit P
+class UC_P(Screen):
+    pass
+
+#Unit U
+class UC_U(Screen):
+    pass
+
+#Unit I
+class UC_I(Screen):
+    pass
+
+#Unit R
+class UC_R(Screen):
+    pass
+
+#siunits
+class SI_U(Screen):
+    pass
 
 
 class TestApp(MDApp):
@@ -1770,6 +2456,19 @@ class TestApp(MDApp):
         sm.add_widget(R_Guide_Screen_1(name='R_guide_1'))    
         sm.add_widget(R_Guide_Screen_2(name='R_guide_2'))
         sm.add_widget(R_Guide_Screen_3(name='R_guide_3'))   
+
+        #unitconverter
+        sm.add_widget(Unitconverter(name='Unit'))
+
+        sm.add_widget(UC_U(name='Unit_U'))
+        sm.add_widget(UC_I(name='Unit_I'))
+        sm.add_widget(UC_P(name='Unit_P'))
+        sm.add_widget(UC_R(name='Unit_R'))
+
+        #siunits
+
+        sm.add_widget(SI_U(name='SIU'))
+
 
         return sm
 
